@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="GUA'I TECH es una tienda online de productos electronicos con compras rapidas por WhatsApp."
+    />
+    <meta property="og:title" content="GUA'I TECH" />
+    <meta
+      property="og:description"
+      content="Catalogo de electronica, perifericos y accesorios con compra directa por WhatsApp."
+    />
+    <meta property="og:image" content="/images/hero-tech.png" />
+    <title>GUA'I TECH | Electronica por WhatsApp</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio de GUA'I TECH">
+        <span class="brand-mark" aria-hidden="true">GT</span>
+        <span>GUA'I TECH</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegacion principal">
+        <a href="#productos">Productos</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">Tecnologia lista para llevar</p>
+          <h1 id="hero-title">GUA'I TECH</h1>
+          <p class="hero-copy">
+            Productos electronicos seleccionados, asesoramiento simple y compra
+            directa por WhatsApp desde Paraguay.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary js-view-catalog" href="#productos">Ver productos</a>
+            <a class="btn btn-secondary js-contact" href="#contacto">Consultar ahora</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-section" id="productos" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <p class="eyebrow">Catalogo</p>
+          <h2 id="catalog-title">Productos destacados</h2>
+          <p>
+            Cada producto tiene un mensaje preparado para consultar o comprar
+            directamente por WhatsApp.
+          </p>
+        </div>
+        <div class="filters" aria-label="Categorias de productos">
+          <button class="filter-button is-active" type="button" data-filter="todos">Todos</button>
+          <button class="filter-button" type="button" data-filter="audio">Audio</button>
+          <button class="filter-button" type="button" data-filter="wearables">Wearables</button>
+          <button class="filter-button" type="button" data-filter="computadoras">Computadoras</button>
+          <button class="filter-button" type="button" data-filter="perifericos">Perifericos</button>
+          <button class="filter-button" type="button" data-filter="accesorios">Accesorios</button>
+        </div>
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="benefits" id="beneficios" aria-labelledby="benefits-title">
+        <div class="section-heading">
+          <p class="eyebrow">Por que elegirnos</p>
+          <h2 id="benefits-title">Compra rapida, clara y medible</h2>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit-item">
+            <span class="benefit-icon" aria-hidden="true">01</span>
+            <h3>Atencion por WhatsApp</h3>
+            <p>Consultas directas con mensajes ya preparados para cada producto.</p>
+          </article>
+          <article class="benefit-item">
+            <span class="benefit-icon" aria-hidden="true">02</span>
+            <h3>Catalogo ordenado</h3>
+            <p>IDs permanentes, categorias claras y precios visibles para decidir rapido.</p>
+          </article>
+          <article class="benefit-item">
+            <span class="benefit-icon" aria-hidden="true">03</span>
+            <h3>Listo para GTM y GA4</h3>
+            <p>Eventos enviados al dataLayer para medir catalogo, producto, contacto y WhatsApp.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" id="contacto" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2 id="contact-title">Hablemos de tu proxima compra</h2>
+          <p>
+            Escribinos y te ayudamos a elegir el equipo o accesorio que mejor se
+            adapta a lo que necesitás.
+          </p>
+        </div>
+        <a
+          class="btn btn-primary js-contact"
+          href="https://wa.me/595984416924?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20GUA'I%20TECH."
+          target="_blank"
+          rel="noopener noreferrer"
+          data-contact-channel="whatsapp"
+        >
+          Contactar por WhatsApp
+        </a>
+      </section>
+
+      <section class="faq" id="faq" aria-labelledby="faq-title">
+        <div class="section-heading">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 id="faq-title">Antes de comprar</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Como funciona la compra por WhatsApp?</summary>
+            <p>Al presionar el boton del producto se abre WhatsApp con un mensaje personalizado para iniciar la consulta.</p>
+          </details>
+          <details>
+            <summary>Los eventos ya se envian a Google Analytics?</summary>
+            <p>No todavia. En esta etapa se guardan en el dataLayer y se ven en consola, listos para conectar GTM y GA4.</p>
+          </details>
+          <details>
+            <summary>Que datos se registran en los eventos?</summary>
+            <p>Solo datos de interaccion y producto: ID, nombre, categoria y precio. No se envia telefono ni informacion personal.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>GUA'I TECH - Electronica con compra directa por WhatsApp.</p>
+      <a href="#inicio">Volver arriba</a>
+    </footer>
+
+    <dialog class="product-dialog" id="productDialog" aria-labelledby="dialogTitle">
+      <button class="dialog-close" type="button" aria-label="Cerrar detalle de producto">x</button>
+      <div class="dialog-body" id="dialogBody"></div>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
