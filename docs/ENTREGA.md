@@ -14,9 +14,9 @@ GUA'I Tech es una landing academica para venta consultiva de productos electroni
 | `lib/analytics.js` | `dataLayer`, `trackEvent()`, eventos permitidos y limpieza de datos personales. |
 | `public/images/` | Imagenes WebP locales, menores a 300 KB. |
 
-## Que falta antes de entregar
+## Estado antes de entregar
 
-- Subir el codigo al repositorio GitHub: https://github.com/luisgallas/Desarollo_WEB_complementos
+- Codigo subido al repositorio GitHub: https://github.com/luisgallas/Desarollo_WEB_complementos
 - Publicar en Vercel y copiar la URL real en `README.md`.
 - Tomar capturas de escritorio, movil, Network y consola desde la URL publicada.
 - Completar cualquier dato real que el profesor pida en la entrega final.

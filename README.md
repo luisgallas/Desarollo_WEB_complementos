@@ -1,100 +1,207 @@
 # GUA'I Tech
 
-Tienda academica sencilla para vender productos electronicos mediante consultas por WhatsApp. La entrega principal esta hecha con HTML, CSS y JavaScript.
+GUA'I Tech es una landing page academica para una tienda de productos electronicos. La pagina permite ver un catalogo, revisar detalles de cada producto y abrir WhatsApp con un mensaje preparado para consultar o comprar.
 
 ## Objetivo
 
-Mostrar un catalogo de productos electronicos, permitir ver el detalle de cada producto, abrir WhatsApp con un mensaje preparado y registrar eventos en `window.dataLayer` para una futura integracion con GTM y GA4.
+Crear una tienda web sencilla que cumpla con una primera etapa de preparacion para analitica digital:
 
-## Tecnologias utilizadas
+- Mostrar productos electronicos desde una estructura de datos en JavaScript.
+- Evitar escribir productos uno por uno directamente en el HTML.
+- Conectar botones de compra con WhatsApp.
+- Registrar interacciones en `window.dataLayer`.
+- Dejar la pagina lista para una futura conexion con Google Tag Manager y Google Analytics 4.
 
-- HTML: `index.html`
-- CSS: `styles.css`
-- JavaScript: `js/app.js`, `lib/products.js`, `lib/config.js`, `lib/analytics.js`
-- Imagenes locales WebP: `public/images/`
-- Herramienta de IA: ChatGPT / Codex
+## Tecnologias Utilizadas
 
-No se usa React para la pagina principal de entrega. El HTML carga directamente el CSS y el modulo JavaScript.
+- HTML: estructura principal en `index.html`.
+- CSS: estilos visuales y responsive en `styles.css`.
+- JavaScript: interacciones en `js/app.js`.
+- Datos del catalogo: `lib/products.js`.
+- Configuracion de WhatsApp: `lib/config.js`.
+- Eventos y dataLayer: `lib/analytics.js`.
+- Imagenes locales optimizadas: `public/images/`.
+- IA utilizada: ChatGPT / Codex.
+- Vite: servidor local y build para Vercel.
 
-## URL del proyecto publicado
+## Funcionalidades
 
-Pendiente de completar despues de publicar en Vercel.
-
-## Repositorio GitHub
-
-Repositorio de destino: https://github.com/luisgallas/Desarollo_WEB_complementos
-
-La subida debe realizarse desde una cuenta con permisos sobre ese repositorio.
-
-## Ejecutar localmente
-
-Requisito: Node.js y npm.
-
-```bash
-npm ci
-npm run dev:vercel
-```
-
-Abrir la direccion local que muestra Vite. Para publicar:
-
-```bash
-npm run build:vercel
-```
-
-La carpeta de salida para Vercel es `dist-vercel/`.
+- Header con navegacion.
+- Hero principal con boton `Ver productos`.
+- Catalogo con 6 productos electronicos.
+- Modal de detalle al tocar `Ver producto`.
+- Boton `Comprar por WhatsApp` con mensaje diferente por producto.
+- Seccion de beneficios.
+- Seccion de contacto general.
+- Preguntas frecuentes.
+- Footer.
+- Diseno responsive para celular, tablet y escritorio.
 
 ## Productos
 
-El catalogo esta en `lib/products.js`. Cada producto tiene:
+Los productos estan definidos en `lib/products.js`. Cada producto incluye:
 
-- ID unico y permanente
-- Nombre
-- Categoria
-- Precio
-- Descripcion breve
-- Imagen local
-- Mensaje propio de WhatsApp
+- `id`: identificador unico y permanente.
+- `name`: nombre visible.
+- `category`: categoria interna para analytics.
+- `categoryLabel`: categoria visible.
+- `price`: precio en guaranies.
+- `image`: ruta local dentro de `/images/`.
+- `description`: descripcion breve.
+- `whatsappMessage`: mensaje preparado para WhatsApp.
+- `specs`: lista de caracteristicas.
 
-Las tarjetas se generan desde JavaScript en `js/app.js`, no estan repetidas manualmente en el HTML.
+Ejemplo:
+
+```js
+{
+  id: "mouse-gamer-x1",
+  name: "Mouse Gamer X1",
+  category: "perifericos",
+  price: 95000,
+  image: "/images/mouse-gamer.webp",
+  whatsappMessage: "Hola, quiero consultar por el Mouse Gamer X1."
+}
+```
 
 ## WhatsApp
 
-El numero configurado esta en `lib/config.js`: `595984416924`, equivalente a `0984416924` en Paraguay.
+El numero de WhatsApp esta configurado en `lib/config.js`:
 
-Cada boton `Comprar por WhatsApp` usa `getWhatsAppUrl()` para construir un enlace de este tipo:
+```js
+export const WHATSAPP_NUMBER = "595984416924";
+```
+
+Cada boton de producto usa `getWhatsAppUrl()` para generar una URL como esta:
 
 ```text
 https://wa.me/595984416924?text=Hola%2C%20quiero%20consultar...
 ```
 
-El mensaje se abre preparado, pero no se envia automaticamente.
+El mensaje se abre preparado en WhatsApp, pero el usuario decide si lo envia.
 
-## Eventos
+## Eventos Y DataLayer
 
-`lib/analytics.js` crea y usa:
+La pagina crea un `dataLayer` desde el inicio:
 
 ```js
 window.dataLayer = window.dataLayer || [];
 ```
 
-Eventos preparados:
+Los eventos preparados son:
 
-- `view_catalog`
-- `view_item`
-- `click_whatsapp`
-- `contact`
+| Evento | Cuando ocurre | Datos principales |
+|---|---|---|
+| `view_catalog` | Al ver o tocar el catalogo | `location`, `product_count` |
+| `view_item` | Al abrir el detalle de un producto | `product_id`, `product_name`, `category`, `price` |
+| `click_whatsapp` | Al tocar comprar por WhatsApp | `product_id`, `product_name`, `category`, `price` |
+| `contact` | Al tocar un boton de contacto general | `location` |
 
-Los eventos de producto incluyen `product_id`, `product_name`, `category` y `price`. No se registran nombres de personas, telefonos, correos, documentos ni mensajes personales.
+Los eventos se guardan en `window.dataLayer` y tambien se muestran en la consola con `TRACK:`.
 
-Para probar:
+No se envian datos personales como nombre de persona, telefono, correo, documento o mensajes privados.
 
-1. Abrir DevTools.
-2. Ir a Console.
-3. Tocar Ver productos, Ver producto, Comprar por WhatsApp y Contactar.
-4. Revisar los mensajes `TRACK:` y ejecutar `window.dataLayer`.
+## Probar Eventos En El Navegador
 
-## Documentacion de entrega
+1. Abrir la pagina.
+2. Presionar `F12`.
+3. Entrar en la pestana `Console`.
+4. Hacer clic en `Ver productos`.
+5. Hacer clic en `Ver producto`.
+6. Hacer clic en `Comprar por WhatsApp`.
+7. Hacer clic en `Contactar`.
+8. Escribir:
 
-- `docs/ENTREGA.md`: guia para probar eventos, Network, capturas y explicacion de GTM/GA4.
-- `docs/PROMPTS.md`: prompts utilizados y registro de IA.
+```js
+window.dataLayer
+```
+
+Resultado esperado:
+
+```text
+TRACK: view_catalog
+TRACK: view_item
+TRACK: click_whatsapp
+TRACK: contact
+```
+
+## Ejecutar Localmente
+
+Requisito: tener Node.js y npm instalados.
+
+```bash
+npm install
+npm.cmd run dev -- --host 127.0.0.1
+```
+
+Luego abrir la URL que muestra Vite, normalmente:
+
+```text
+http://127.0.0.1:5173/
+```
+
+En PowerShell se recomienda usar `npm.cmd` para evitar bloqueos de `npm.ps1`.
+
+## Build Para Produccion
+
+```bash
+npm.cmd run build
+```
+
+La salida se genera en:
+
+```text
+dist-vercel/
+```
+
+Esa carpeta no se sube a GitHub porque puede generarse nuevamente desde el codigo fuente.
+
+## Pruebas
+
+```bash
+npm.cmd test
+```
+
+Las pruebas validan:
+
+- Cantidad y estructura de productos.
+- Imagenes WebP locales.
+- Mensajes de WhatsApp.
+- Eventos de analytics.
+- Limpieza de datos personales.
+
+## GitHub
+
+Repositorio:
+
+```text
+https://github.com/luisgallas/Desarollo_WEB_complementos
+```
+
+## Vercel
+
+URL publica:
+
+```text
+Pendiente de completar despues de publicar en Vercel.
+```
+
+Configuracion recomendada en Vercel:
+
+- Framework preset: `Vite`.
+- Build command: `npm run build:vercel`.
+- Output directory: `dist-vercel`.
+
+## Documentacion De Entrega
+
+- `docs/ENTREGA.md`: guia para entrega, eventos, Network, capturas y explicacion de GTM/GA4.
+- `docs/PROMPTS.md`: registro de prompts usados con IA.
 - `docs/IMAGENES.md`: origen, dimensiones y peso de las imagenes.
+
+## Estado Actual
+
+- Codigo fuente subido a GitHub.
+- Catalogo y WhatsApp funcionando.
+- DataLayer y eventos preparados.
+- Pruebas automatizadas funcionando.
+- Pendiente: publicar en Vercel, completar URL publica y tomar capturas finales.
