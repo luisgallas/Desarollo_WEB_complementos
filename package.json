@@ -1,0 +1,21 @@
+{
+  "name": "nexo-tech-py",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "displayName": "GUA'I Tech",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite --config vite.vercel.config.ts",
+    "dev:vercel": "vite --config vite.vercel.config.ts",
+    "build": "vite build --config vite.vercel.config.ts",
+    "build:vercel": "vite build --config vite.vercel.config.ts",
+    "test": "node --test tests/shop.test.mjs",
+    "test:shop": "node --test tests/shop.test.mjs"
+  },
+  "devDependencies": {
+    "vite": "8.0.13"
+  }
+}

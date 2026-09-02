@@ -1,0 +1,619 @@
+/* Variables generales de color, fondo y sombras usadas en toda la pagina. */
+:root {
+  color-scheme: light;
+  --bg: #f7f3ea;
+  --ink: #111513;
+  --muted: #667067;
+  --line: #d9d2c3;
+  --paper: #fffdf7;
+  --accent: #f36f2e;
+  --accent-dark: #a63f16;
+  --soft: #e7f0df;
+  --shadow: 0 24px 60px rgba(23, 29, 24, 0.14);
+}
+
+/* Ajusta el modelo de caja para que padding y borde no rompan los anchos. */
+* {
+  box-sizing: border-box;
+}
+
+/* Desplazamiento suave cuando se navega con enlaces internos como #productos. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos base del cuerpo de la pagina. */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Hereda la misma tipografia en botones y enlaces. */
+body,
+button,
+a {
+  font: inherit;
+}
+
+/* Enlaces sin subrayado para que parezcan parte del diseno. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Imagenes responsivas para que no se salgan de su contenedor. */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Ancho comun para las secciones principales. */
+.site-header,
+.hero,
+.catalog-section,
+.benefits-section,
+.contact-section,
+.faq-section,
+.site-footer {
+  width: min(1160px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* Encabezado superior: marca, menu y boton de contacto. */
+.site-header {
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Marca visual de GUA'I Tech. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.brand strong {
+  font-weight: 800;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 800;
+}
+
+/* Menu principal de navegacion. */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.main-nav a:hover,
+.header-contact:hover,
+.footer-contact:hover {
+  color: var(--accent-dark);
+}
+
+.header-contact,
+.footer-contact {
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  padding: 11px 16px;
+  font-weight: 700;
+}
+
+/* Hero principal de la pagina. */
+.hero {
+  min-height: calc(100vh - 86px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
+  align-items: center;
+  gap: 48px;
+  padding: 28px 0 54px;
+}
+
+/* Texto pequeno superior usado como etiqueta de seccion. */
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 680px;
+  margin-bottom: 22px;
+  font-size: clamp(46px, 8vw, 94px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+/* Texto descriptivo dentro del hero. */
+.hero-copy > p:not(.eyebrow) {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Contenedor de botones del hero. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* Estilo base compartido por todos los botones y CTAs. */
+.primary-button,
+.secondary-button,
+.product-button,
+.whatsapp-button {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 18px;
+  cursor: pointer;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* Botones principales y boton de WhatsApp. */
+.primary-button,
+.whatsapp-button {
+  background: var(--accent);
+  color: #1d130d;
+}
+
+.primary-button:hover,
+.whatsapp-button:hover {
+  background: #ff8750;
+}
+
+.secondary-button,
+.product-button {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.secondary-button:hover,
+.product-button:hover {
+  background: #2c342f;
+}
+
+/* Imagen destacada del hero. */
+.hero-media {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #111;
+  box-shadow: var(--shadow);
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+}
+
+.hero-card {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  gap: 4px;
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.94);
+  padding: 18px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+}
+
+.hero-card span,
+.hero-card small,
+.product-category,
+.catalog-toolbar {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.hero-card strong {
+  font-size: 18px;
+}
+
+.section-heading {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.section-heading h2,
+.contact-section h2 {
+  margin-bottom: 0;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.section-heading p:last-child {
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.catalog-section,
+.benefits-section,
+.faq-section {
+  padding: 74px 0;
+}
+
+/* Barra superior del catalogo con cantidad y moneda. */
+.catalog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin-bottom: 24px;
+}
+
+/* Grilla de productos en escritorio. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta individual de producto. */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.product-image {
+  height: 240px;
+  background: var(--soft);
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+}
+
+.product-content h3 {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.product-description {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.product-price {
+  margin-top: auto;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Grilla de beneficios. */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.benefits-grid article {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+.benefits-grid span {
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.benefits-grid h3 {
+  margin: 12px 0 10px;
+  font-size: 22px;
+}
+
+.benefits-grid p,
+.contact-section p,
+.faq-list p,
+.site-footer p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* Seccion oscura de contacto. */
+.contact-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 48px;
+}
+
+.contact-section .eyebrow {
+  color: #ffb08a;
+}
+
+.contact-section p {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: #dfe6dc;
+}
+
+/* Lista de preguntas frecuentes. */
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-list details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 18px 20px;
+}
+
+.faq-list summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.faq-list p {
+  margin: 12px 0 0;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border-top: 1px solid var(--line);
+  padding: 30px 0 36px;
+}
+
+.site-footer p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* Modal de detalle del producto. */
+.product-dialog {
+  width: min(720px, calc(100% - 32px));
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.product-dialog::backdrop {
+  background: rgba(17, 21, 19, 0.62);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.dialog-layout {
+  display: grid;
+  grid-template-columns: 0.92fr 1fr;
+}
+
+.dialog-layout img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+}
+
+.dialog-body {
+  padding: 34px;
+}
+
+.dialog-body h2 {
+  margin-bottom: 12px;
+  font-size: 32px;
+  line-height: 1.08;
+}
+
+.spec-list {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spec-list li {
+  border-left: 3px solid var(--accent);
+  padding-left: 10px;
+  color: var(--muted);
+}
+
+noscript {
+  display: block;
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto 24px;
+  border: 1px solid var(--accent-dark);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--paper);
+}
+
+/* Ajustes para tablets y pantallas medianas. */
+@media (max-width: 900px) {
+  .site-header {
+    flex-wrap: wrap;
+    padding: 18px 0;
+  }
+
+  .main-nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-media,
+  .hero-media img {
+    min-height: 380px;
+  }
+
+  .product-grid,
+  .benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-section,
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Ajustes para celulares. */
+@media (max-width: 620px) {
+  .site-header,
+  .hero,
+  .catalog-section,
+  .benefits-section,
+  .contact-section,
+  .faq-section,
+  .site-footer {
+    width: min(100% - 28px, 1160px);
+  }
+
+  .brand {
+    font-size: 22px;
+  }
+
+  .main-nav {
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 18px;
+    padding-bottom: 4px;
+  }
+
+  .header-contact {
+    padding-inline: 12px;
+  }
+
+  h1 {
+    font-size: 44px;
+  }
+
+  .hero-copy > p:not(.eyebrow) {
+    font-size: 16px;
+  }
+
+  .hero-actions,
+  .catalog-toolbar {
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .product-button,
+  .whatsapp-button {
+    width: 100%;
+  }
+
+  .product-grid,
+  .benefits-grid,
+  .dialog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .product-image {
+    height: 210px;
+  }
+
+  .dialog-layout img {
+    min-height: 240px;
+  }
+
+  .dialog-body {
+    padding: 24px;
+  }
+
+  .contact-section {
+    padding: 28px;
+  }
+}

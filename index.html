@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es-PY">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GUA'I Tech: tienda academica de productos electronicos con consultas por WhatsApp y eventos preparados para GTM/GA4." />
+  <meta name="theme-color" content="#111513" />
+  <title>GUA'I Tech | Tu tienda Electronica</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+  <!-- En la siguiente etapa, el fragmento de GTM se coloca despues del dataLayer. -->
+</head>
+<body>
+  <!-- Encabezado principal con marca, navegacion y acceso rapido a WhatsApp. -->
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Inicio de GUA'I Tech">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span>GUA'I <strong>Tech</strong></span>
+    </a>
+    <nav class="main-nav" aria-label="Navegacion principal">
+      <a href="#productos" class="js-catalog-link" data-location="header">Productos</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="header-contact js-contact" href="#" data-location="header">Contactar</a>
+  </header>
+
+  <main>
+    <!-- Seccion inicial de la pagina: presentacion de la tienda y producto destacado. -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Catalogo academico de electronica</p>
+        <h1 id="hero-title">Tecnologia lista para conversar.</h1>
+        <p>Explora productos electronicos, revisa sus detalles y abre WhatsApp para consultar por el articulo elegido.</p>
+        <div class="hero-actions">
+          <a class="primary-button js-catalog-link" href="#productos" data-location="hero">Ver productos</a>
+          <a class="secondary-button js-contact" href="#" data-location="hero">Contactar</a>
+        </div>
+      </div>
+      <div class="hero-media" aria-label="Producto destacado">
+        <img src="/images/auriculares.webp" alt="Auriculares Bluetooth destacados de GUA'I Tech" width="900" height="604" />
+        <div class="hero-card">
+          <span>Destacado</span>
+          <strong>Auriculares Bluetooth A1</strong>
+          <small>Consulta  por WhatsApp</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalogo: las tarjetas se cargan desde js/app.js usando los datos de lib/products.js. -->
+    <section id="productos" class="catalog-section" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <p class="eyebrow">Catalogo</p>
+        <h2 id="catalog-title">Productos electronicos</h2>
+        <p>Las tarjetas se generan desde una estructura de datos en JavaScript. Los IDs son estables para analytics y futuras etiquetas.</p>
+      </div>
+      <div class="catalog-toolbar" aria-live="polite">
+        <span id="product-count">Cargando productos...</span>
+        
+      </div>
+      <div id="product-grid" class="product-grid"></div>
+    </section>
+
+    <!-- Beneficios principales de comprar o consultar por la pagina. -->
+    <section id="beneficios" class="benefits-section" aria-labelledby="benefits-title">
+      <div class="section-heading">
+        <p class="eyebrow">Beneficios</p>
+        <h2 id="benefits-title">Compra simple, consulta directa</h2>
+      </div>
+      <div class="benefits-grid">
+        <article>
+          <span aria-hidden="true">01</span>
+          <h3>Mensaje preparado</h3>
+          <p>Cada producto abre WhatsApp con un texto diferente para consultar sin escribir desde cero.</p>
+        </article>
+        <article>
+          <span aria-hidden="true">02</span>
+          <h3>Catalogo ordenado</h3>
+          <p>Los productos tienen categoria, precio, imagen local y descripcion breve.</p>
+        </article>
+        <article>
+          <span aria-hidden="true">03</span>
+          <h3>Listo para medicion</h3>
+          <p>Los eventos quedan en dataLayer para una futura integracion con GTM y GA4.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Bloque de contacto general para abrir WhatsApp sin elegir un producto especifico. -->
+    <section id="contacto" class="contact-section" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h2 id="contact-title">Tenes una duda sobre un producto?</h2>
+        <p>Escribinos por WhatsApp para consultar disponibilidad, formas de pago o entrega</p>
+      </div>
+      <a class="primary-button js-contact" href="#" data-location="contact">Contactar por WhatsApp</a>
+    </section>
+
+    <!-- Preguntas frecuentes para resolver dudas comunes antes de comprar. -->
+    <section id="faq" class="faq-section" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 id="faq-title">Dudas antes de comprar</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Como puedo hacer para comprar?</summary>
+          <p>Elegis el producto que te gusta, tocas Comprar por WhatsApp y nos escribis para confirmar precio, stock y entrega.</p>
+        </details>
+        <details>
+          <summary>Puedo consultar antes de decidir?</summary>
+          <p>Si. Podes preguntar por caracteristicas, formas de pago o recomendaciones antes de elegir un producto.</p>
+        </details>
+        <details>
+          <summary>El pedido se confirma automaticamente?</summary>
+          <p>No. WhatsApp solo abre el mensaje preparado; la compra se confirma cuando coordinamos contigo por chat.</p>
+        </details>
+        <details>
+          <summary>Que datos necesito pasar?</summary>
+          <p>Solo los datos necesarios para coordinar la compra, como producto elegido, forma de entrega y contacto.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de pagina con marca, descripcion corta y contacto. -->
+  <footer class="site-footer">
+    <a class="brand" href="#" aria-label="Inicio de GUA'I Tech">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span>GUA'I <strong>Tech</strong></span>
+    </a>
+    <p>La mejor tienda, al mejor precio del mercado</p>
+    <a class="footer-contact js-contact" href="#" data-location="footer">Contactar</a>
+  </footer>
+
+  <!-- Modal reutilizable: js/app.js carga aca el detalle del producto seleccionado. -->
+  <dialog id="product-dialog" class="product-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" aria-label="Cerrar detalle">x</button>
+    <div id="dialog-content"></div>
+  </dialog>
+
+  <!-- Mensaje para navegadores que tienen JavaScript desactivado. -->
+  <noscript>Esta pagina necesita JavaScript para mostrar el catalogo y registrar eventos.</noscript>
+  <!-- Modulo principal que dibuja el catalogo y activa las interacciones. -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
