@@ -8,10 +8,18 @@
   <title>GUA'I Tech | Tu tienda Electronica</title>
   <link rel="icon" href="/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
+  <!-- Google tag (gtag.js) para Google Analytics 4. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NG9PJNS5DS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);};
+    window.gtag("js", new Date());
+    window.__gaConfiguredIds = window.__gaConfiguredIds || {};
+    if (!window.__gaConfiguredIds["G-NG9PJNS5DS"]) {
+      window.gtag("config", "G-NG9PJNS5DS");
+      window.__gaConfiguredIds["G-NG9PJNS5DS"] = true;
+    }
   </script>
-  <!-- En la siguiente etapa, el fragmento de GTM se coloca despues del dataLayer. -->
 </head>
 <body>
   <!-- Encabezado principal con marca, navegacion y acceso rapido a WhatsApp. -->
