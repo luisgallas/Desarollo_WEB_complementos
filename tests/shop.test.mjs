@@ -6,10 +6,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 // Importa el catalogo real usado por la pagina.
 import { products } from "../lib/products.js";
-// Importa la funcion que arma enlaces de WhatsApp.
-import { getWhatsAppUrl } from "../lib/config.js";
+// Importa la funcion que arma enlaces de WhatsApp y valida GA4.
+import { getWhatsAppUrl, isGaConfigured } from "../lib/config.js";
 // Importa funciones de analytics para validar eventos.
-import { trackEvent, productData } from "../lib/analytics.js";
+import { trackEvent, productData, initGoogleAnalytics } from "../lib/analytics.js";
 
 // Prueba que el catalogo tenga la cantidad correcta y datos completos.
 test("el catalogo contiene seis productos con IDs estables, imagenes WebP locales y mensajes propios", () => {
@@ -60,6 +60,43 @@ test("WhatsApp codifica cada mensaje y admite demo sin inventar destinatario", (
   }
   // Rechaza numeros mal formateados.
   assert.throws(() => getWhatsAppUrl("Hola", "+595 981"));
+});
+
+// Prueba que GA4 pueda inicializarse con un Measurement ID valido.
+test("GA4 carga Google tag y envia eventos con parametros de producto", () => {
+  // Valida el formato esperado del Measurement ID.
+  assert.equal(isGaConfigured(""), false);
+  assert.equal(isGaConfigured("UA-123456"), false);
+  assert.equal(isGaConfigured("G-TEST123"), true);
+
+  // Simula el navegador para comprobar la carga del script.
+  const scripts = [];
+  global.window = { dataLayer: [] };
+  global.document = {
+    head: { append: (script) => scripts.push(script) },
+    querySelector: () => null,
+    createElement: (tagName) => ({ tagName, async: false, src: "" }),
+  };
+
+  assert.equal(initGoogleAnalytics("G-TEST123"), true);
+  assert.equal(scripts.length, 1);
+  assert.equal(scripts[0].async, true);
+  assert.equal(scripts[0].src, "https://www.googletagmanager.com/gtag/js?id=G-TEST123");
+
+  const p = products[0];
+  trackEvent("click_whatsapp", { ...productData(p), location: "detail" });
+
+  const gaEvent = window.dataLayer.at(-1);
+  assert.equal(gaEvent[0], "event");
+  assert.equal(gaEvent[1], "click_whatsapp");
+  assert.equal(gaEvent[2].product_id, p.id);
+  assert.equal(gaEvent[2].product_name, p.name);
+  assert.equal(gaEvent[2].category, p.category);
+  assert.equal(gaEvent[2].price, p.price);
+  assert.equal(gaEvent[2].value, p.price);
+
+  delete global.document;
+  delete global.window;
 });
 
 // Prueba que analytics registre solo eventos permitidos y sin datos personales.

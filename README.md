@@ -101,6 +101,33 @@ Los eventos se guardan en `window.dataLayer` y tambien se muestran en la consola
 
 No se envian datos personales como nombre de persona, telefono, correo, documento o mensajes privados.
 
+## Google Analytics 4
+
+La pagina puede enviar los eventos a GA4 con Google tag (`gtag.js`).
+
+Para activarlo:
+
+1. Crear o abrir una propiedad GA4.
+2. Entrar a `Admin > Data streams`.
+3. Abrir el flujo web del sitio.
+4. Copiar el `Measurement ID`, que tiene formato `G-XXXXXXXXXX`.
+5. En Vercel, crear la variable de entorno `VITE_GA_MEASUREMENT_ID` con ese valor.
+
+Para probarlo localmente tambien se puede reemplazar temporalmente el valor de `GA_MEASUREMENT_ID` en `lib/config.js`.
+
+Cuando el ID esta configurado, `lib/analytics.js` carga Google tag y cada `trackEvent()` envia:
+
+```js
+gtag("event", "click_whatsapp", {
+  product_id: "mouse-gamer-x1",
+  product_name: "Mouse Gamer X1",
+  category: "perifericos",
+  price: 95000,
+  value: 95000,
+  currency: "PYG"
+});
+```
+
 ## Probar Eventos En El Navegador
 
 1. Abrir la pagina.
