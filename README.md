@@ -183,7 +183,7 @@ https://github.com/luisgallas/Desarollo_WEB_complementos
 URL publica:
 
 ```text
-Pendiente de completar despues de publicar en Vercel.
+https://desarollo-web-complementos.vercel.app/
 ```
 
 Configuracion recomendada en Vercel:
@@ -201,7 +201,8 @@ Configuracion recomendada en Vercel:
 ## Estado Actual
 
 - Codigo fuente subido a GitHub.
+- Pagina publicada en Vercel.
 - Catalogo y WhatsApp funcionando.
 - DataLayer y eventos preparados.
 - Pruebas automatizadas funcionando.
-- Pendiente: publicar en Vercel, completar URL publica y tomar capturas finales.
+- Pendiente: adjuntar capturas finales de escritorio, movil, Network y consola.

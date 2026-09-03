@@ -17,8 +17,8 @@ GUA'I Tech es una landing academica para venta consultiva de productos electroni
 ## Estado antes de entregar
 
 - Codigo subido al repositorio GitHub: https://github.com/luisgallas/Desarollo_WEB_complementos
-- Publicar en Vercel y copiar la URL real en `README.md`.
-- Tomar capturas de escritorio, movil, Network y consola desde la URL publicada.
+- Pagina publicada en Vercel: https://desarollo-web-complementos.vercel.app/
+- Tomar y adjuntar capturas de escritorio, movil, Network y consola desde la URL publicada.
 - Completar cualquier dato real que el profesor pida en la entrega final.
 
 ## Como funciona el boton de WhatsApp
