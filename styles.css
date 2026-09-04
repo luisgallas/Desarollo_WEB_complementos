@@ -8,6 +8,7 @@
   --paper: #fffdf7;
   --accent: #f36f2e;
   --accent-dark: #a63f16;
+  --warm: #ffb08a;
   --soft: #e7f0df;
   --shadow: 0 24px 60px rgba(23, 29, 24, 0.14);
 }
@@ -63,11 +64,17 @@ img {
 
 /* Encabezado superior: marca, menu y boton de contacto. */
 .site-header {
-  min-height: 86px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: 82px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  border-bottom: 1px solid rgba(217, 210, 195, 0.78);
+  background: rgba(247, 243, 234, 0.88);
+  backdrop-filter: blur(14px);
 }
 
 /* Marca visual de GUA'I Tech. */
@@ -102,7 +109,8 @@ img {
   align-items: center;
   gap: 24px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .main-nav a:hover,
@@ -117,23 +125,25 @@ img {
   border-radius: 8px;
   padding: 11px 16px;
   font-weight: 700;
+  background: var(--paper);
+  box-shadow: 0 10px 24px rgba(23, 29, 24, 0.06);
 }
 
 /* Hero principal de la pagina. */
 .hero {
-  min-height: calc(100vh - 86px);
+  min-height: calc(92vh - 82px);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
+  grid-template-columns: minmax(0, 1.03fr) minmax(320px, 0.82fr);
   align-items: center;
-  gap: 48px;
-  padding: 28px 0 54px;
+  gap: 52px;
+  padding: 42px 0 64px;
 }
 
 /* Texto pequeno superior usado como etiqueta de seccion. */
 .eyebrow {
   margin: 0 0 14px;
   color: var(--accent-dark);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -149,8 +159,8 @@ p {
 h1 {
   max-width: 680px;
   margin-bottom: 22px;
-  font-size: clamp(46px, 8vw, 94px);
-  line-height: 0.98;
+  font-size: clamp(44px, 7vw, 82px);
+  line-height: 1;
   letter-spacing: 0;
 }
 
@@ -158,7 +168,7 @@ h1 {
 .hero-copy > p:not(.eyebrow) {
   max-width: 560px;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.7;
 }
 
@@ -182,10 +192,11 @@ h1 {
   gap: 8px;
   border: 0;
   border-radius: 8px;
-  padding: 0 18px;
+  padding: 0 20px;
   cursor: pointer;
   font-weight: 800;
   text-align: center;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 
 /* Botones principales y boton de WhatsApp. */
@@ -193,11 +204,13 @@ h1 {
 .whatsapp-button {
   background: var(--accent);
   color: #1d130d;
+  box-shadow: 0 14px 30px rgba(243, 111, 46, 0.2);
 }
 
 .primary-button:hover,
 .whatsapp-button:hover {
   background: #ff8750;
+  transform: translateY(-1px);
 }
 
 .secondary-button,
@@ -209,14 +222,16 @@ h1 {
 .secondary-button:hover,
 .product-button:hover {
   background: #2c342f;
+  transform: translateY(-1px);
 }
 
 /* Imagen destacada del hero. */
 .hero-media {
   position: relative;
-  min-height: 520px;
+  min-height: 500px;
   overflow: hidden;
   border-radius: 8px;
+  border: 0;
   background: #111;
   box-shadow: var(--shadow);
 }
@@ -224,7 +239,7 @@ h1 {
 .hero-media img {
   width: 100%;
   height: 100%;
-  min-height: 520px;
+  min-height: 500px;
   object-fit: cover;
 }
 
@@ -244,7 +259,8 @@ h1 {
 .hero-card span,
 .hero-card small,
 .product-category,
-.catalog-toolbar {
+.catalog-toolbar,
+.empty-results {
   color: var(--muted);
   font-size: 12px;
 }
@@ -262,7 +278,7 @@ h1 {
 .section-heading h2,
 .contact-section h2 {
   margin-bottom: 0;
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(32px, 5vw, 52px);
   line-height: 1.05;
   letter-spacing: 0;
 }
@@ -276,24 +292,58 @@ h1 {
 .catalog-section,
 .benefits-section,
 .faq-section {
-  padding: 74px 0;
+  padding: 80px 0;
 }
 
 /* Barra superior del catalogo con cantidad y moneda. */
 .catalog-toolbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 14px 0;
+  gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.78);
+  padding: 14px;
   margin-bottom: 24px;
+  box-shadow: 0 12px 30px rgba(23, 29, 24, 0.05);
+}
+
+.catalog-toolbar #product-count {
+  white-space: nowrap;
+  font-weight: 800;
+}
+
+.search-field {
+  display: grid;
+  flex: 1;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.search-field input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: 0;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.search-field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(243, 111, 46, 0.15);
 }
 
 /* Grilla de productos en escritorio. */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -306,10 +356,18 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
+  box-shadow: 0 14px 36px rgba(23, 29, 24, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.product-card:hover {
+  border-color: rgba(243, 111, 46, 0.5);
+  box-shadow: 0 22px 46px rgba(23, 29, 24, 0.12);
+  transform: translateY(-3px);
 }
 
 .product-image {
-  height: 240px;
+  height: 210px;
   background: var(--soft);
 }
 
@@ -323,23 +381,25 @@ h1 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
   padding: 18px;
 }
 
 .product-content h3 {
   margin-bottom: 0;
-  font-size: 20px;
+  font-size: 19px;
+  line-height: 1.2;
 }
 
 .product-description {
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.55;
+  font-size: 15px;
 }
 
 .product-price {
   margin-top: auto;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 900;
 }
 
@@ -357,8 +417,11 @@ h1 {
 }
 
 .benefits-grid article {
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 22px;
+  box-shadow: 0 12px 28px rgba(23, 29, 24, 0.05);
 }
 
 .benefits-grid span {
@@ -413,6 +476,7 @@ h1 {
   border-radius: 8px;
   background: var(--paper);
   padding: 18px 20px;
+  box-shadow: 0 10px 26px rgba(23, 29, 24, 0.04);
 }
 
 .faq-list summary {
@@ -438,6 +502,59 @@ h1 {
   font-size: 14px;
 }
 
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-credit {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.footer-credit:hover {
+  color: var(--accent-dark);
+}
+
+.credits-section {
+  width: min(900px, calc(100% - 40px));
+  margin-inline: auto;
+  padding: 72px 0;
+}
+
+.credits-section h1 {
+  max-width: 760px;
+  font-size: clamp(40px, 7vw, 72px);
+}
+
+.credits-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credits-list li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 16px 18px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.credits-list a {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.credits-list a:hover {
+  color: var(--accent-dark);
+}
+
 /* Modal de detalle del producto. */
 .product-dialog {
   width: min(720px, calc(100% - 32px));
@@ -461,10 +578,11 @@ h1 {
   width: 36px;
   height: 36px;
   border: 0;
-  border-radius: 50%;
+  border-radius: 8px;
   background: var(--paper);
   cursor: pointer;
   font-weight: 900;
+  font-size: 22px;
 }
 
 .dialog-layout {
@@ -513,6 +631,15 @@ noscript {
   background: var(--paper);
 }
 
+.empty-results {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 22px;
+  text-align: center;
+  font-size: 15px;
+}
+
 /* Ajustes para tablets y pantallas medianas. */
 @media (max-width: 900px) {
   .site-header {
@@ -542,7 +669,8 @@ noscript {
   }
 
   .contact-section,
-  .site-footer {
+  .site-footer,
+  .footer-links {
     align-items: flex-start;
     flex-direction: column;
   }
@@ -586,6 +714,7 @@ noscript {
   .hero-actions,
   .catalog-toolbar {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .primary-button,

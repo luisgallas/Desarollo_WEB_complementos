@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GUA'I Tech: tienda academica de productos electronicos con consultas por WhatsApp y eventos preparados para GTM/GA4." />
+  <meta name="description" content="GUA'I Tech: tienda de celulares, computadoras, cargadores, audio y accesorios con atencion directa por WhatsApp." />
   <meta name="theme-color" content="#111513" />
-  <title>GUA'I Tech | Tu tienda Electronica</title>
+  <title>GUA'I Tech | Tienda de electronica</title>
   <link rel="icon" href="/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <!-- Google tag (gtag.js) para Google Analytics 4. -->
@@ -41,11 +41,11 @@
     <!-- Seccion inicial de la pagina: presentacion de la tienda y producto destacado. -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Catalogo academico de electronica</p>
+        <p class="eyebrow">Electronica seleccionada</p>
         <h1 id="hero-title">Tecnologia lista para conversar.</h1>
-        <p>Explora productos electronicos, revisa sus detalles y abre WhatsApp para consultar por el articulo elegido.</p>
+        <p>Celulares, notebooks, audio, cargadores y accesorios con atencion directa para elegir mejor antes de comprar.</p>
         <div class="hero-actions">
-          <a class="primary-button js-catalog-link" href="#productos" data-location="hero">Ver productos</a>
+          <a class="primary-button js-catalog-link" href="#productos" data-location="hero">Explorar tienda</a>
           <a class="secondary-button js-contact" href="#" data-location="hero">Contactar</a>
         </div>
       </div>
@@ -54,7 +54,7 @@
         <div class="hero-card">
           <span>Destacado</span>
           <strong>Auriculares Bluetooth A1</strong>
-          <small>Consulta  por WhatsApp</small>
+          <small>Consulta por WhatsApp</small>
         </div>
       </div>
     </section>
@@ -62,38 +62,42 @@
     <!-- Catalogo: las tarjetas se cargan desde js/app.js usando los datos de lib/products.js. -->
     <section id="productos" class="catalog-section" aria-labelledby="catalog-title">
       <div class="section-heading">
-        <p class="eyebrow">Catalogo</p>
-        <h2 id="catalog-title">Productos electronicos</h2>
-        <p>Las tarjetas se generan desde una estructura de datos en JavaScript. Los IDs son estables para analytics y futuras etiquetas.</p>
+        <p class="eyebrow">Tienda</p>
+        <h2 id="catalog-title">Productos destacados</h2>
+        <p>Busca por producto, marca o categoria y consulta disponibilidad al instante.</p>
       </div>
       <div class="catalog-toolbar" aria-live="polite">
+        <label class="search-field" for="product-search">
+          <span>Buscar</span>
+          <input id="product-search" type="search" placeholder="Celular, notebook, cargador..." autocomplete="off" />
+        </label>
         <span id="product-count">Cargando productos...</span>
-        
       </div>
       <div id="product-grid" class="product-grid"></div>
+      <p id="empty-results" class="empty-results" hidden>No encontramos productos con esa busqueda.</p>
     </section>
 
     <!-- Beneficios principales de comprar o consultar por la pagina. -->
     <section id="beneficios" class="benefits-section" aria-labelledby="benefits-title">
       <div class="section-heading">
         <p class="eyebrow">Beneficios</p>
-        <h2 id="benefits-title">Compra simple, consulta directa</h2>
+        <h2 id="benefits-title">Atencion rapida y productos claros</h2>
       </div>
       <div class="benefits-grid">
         <article>
           <span aria-hidden="true">01</span>
-          <h3>Mensaje preparado</h3>
-          <p>Cada producto abre WhatsApp con un texto diferente para consultar sin escribir desde cero.</p>
+          <h3>Consulta directa</h3>
+          <p>Cada producto abre WhatsApp con el nombre del articulo para confirmar stock, precio y entrega.</p>
         </article>
         <article>
           <span aria-hidden="true">02</span>
-          <h3>Catalogo ordenado</h3>
-          <p>Los productos tienen categoria, precio, imagen local y descripcion breve.</p>
+          <h3>Catalogo amplio</h3>
+          <p>Celulares, notebooks, cargadores, audio, wearables y perifericos en una sola tienda.</p>
         </article>
         <article>
           <span aria-hidden="true">03</span>
-          <h3>Listo para medicion</h3>
-          <p>Los eventos quedan en dataLayer para una futura integracion con GTM y GA4.</p>
+          <h3>Eleccion sencilla</h3>
+          <p>Ficha breve, precio visible y caracteristicas clave para comparar sin perder tiempo.</p>
         </article>
       </div>
     </section>
@@ -102,8 +106,8 @@
     <section id="contacto" class="contact-section" aria-labelledby="contact-title">
       <div>
         <p class="eyebrow">Contacto</p>
-        <h2 id="contact-title">Tenes una duda sobre un producto?</h2>
-        <p>Escribinos por WhatsApp para consultar disponibilidad, formas de pago o entrega</p>
+        <h2 id="contact-title">Buscas algo especifico?</h2>
+        <p>Escribinos por WhatsApp y te ayudamos a encontrar el celular, computadora o accesorio que necesitas.</p>
       </div>
       <a class="primary-button js-contact" href="#" data-location="contact">Contactar por WhatsApp</a>
     </section>
@@ -142,18 +146,21 @@
       <span class="brand-mark" aria-hidden="true">G</span>
       <span>GUA'I <strong>Tech</strong></span>
     </a>
-    <p>La mejor tienda, al mejor precio del mercado</p>
-    <a class="footer-contact js-contact" href="#" data-location="footer">Contactar</a>
+    <p>Electronica seleccionada con atencion directa por WhatsApp.</p>
+    <div class="footer-links">
+      <a class="footer-credit" href="/creditos.html">Creditos de imagenes</a>
+      <a class="footer-contact js-contact" href="#" data-location="footer">Contactar</a>
+    </div>
   </footer>
 
   <!-- Modal reutilizable: js/app.js carga aca el detalle del producto seleccionado. -->
   <dialog id="product-dialog" class="product-dialog" aria-labelledby="dialog-title">
-    <button class="dialog-close" type="button" aria-label="Cerrar detalle">x</button>
+    <button class="dialog-close" type="button" aria-label="Cerrar detalle">&times;</button>
     <div id="dialog-content"></div>
   </dialog>
 
   <!-- Mensaje para navegadores que tienen JavaScript desactivado. -->
-  <noscript>Esta pagina necesita JavaScript para mostrar el catalogo y registrar eventos.</noscript>
+  <noscript>Esta pagina necesita JavaScript para mostrar el catalogo.</noscript>
   <!-- Modulo principal que dibuja el catalogo y activa las interacciones. -->
   <script type="module" src="/js/app.js"></script>
 </body>

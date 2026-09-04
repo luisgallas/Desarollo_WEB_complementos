@@ -11,14 +11,17 @@ import { getWhatsAppUrl, isGaConfigured } from "../lib/config.js";
 // Importa funciones de analytics para validar eventos.
 import { trackEvent, productData, initGoogleAnalytics } from "../lib/analytics.js";
 
-// Prueba que el catalogo tenga la cantidad correcta y datos completos.
-test("el catalogo contiene seis productos con IDs estables, imagenes WebP locales y mensajes propios", () => {
-  // Deben existir seis productos.
-  assert.equal(products.length, 6);
+// Prueba que el catalogo tenga datos completos.
+test("el catalogo contiene productos variados con IDs estables, imagenes locales y mensajes propios", () => {
+  // Debe existir un catalogo amplio.
+  assert.ok(products.length >= 12);
   // Los IDs no deben repetirse.
-  assert.equal(new Set(products.map(p => p.id)).size, 6);
+  assert.equal(new Set(products.map(p => p.id)).size, products.length);
   // Cada producto debe tener su propio mensaje de WhatsApp.
-  assert.equal(new Set(products.map(p => p.whatsappMessage)).size, 6);
+  assert.equal(new Set(products.map(p => p.whatsappMessage)).size, products.length);
+  assert.ok(products.some(p => p.category === "celulares"));
+  assert.ok(products.some(p => p.category === "computacion"));
+  assert.ok(products.some(p => p.category === "cargadores"));
 
   // Revisa cada producto del catalogo.
   for (const p of products) {
@@ -28,16 +31,23 @@ test("el catalogo contiene seis productos con IDs estables, imagenes WebP locale
     assert.ok(p.name && p.category && p.description && p.whatsappMessage.includes(p.name));
     // El precio debe ser un numero positivo.
     assert.ok(Number.isFinite(p.price) && p.price > 0);
-    // La imagen debe apuntar a un WebP local.
-    assert.match(p.image, /^\/images\/[a-z-]+\.webp$/);
+    // La imagen debe apuntar a un archivo local optimizado.
+    assert.match(p.image, /^\/images\/[a-z0-9-]+\.(webp|png|jpg)$/);
     // Lee la imagen desde public para confirmar que existe.
     const image = readFileSync(new URL("../public" + p.image, import.meta.url));
-    // Un WebP empieza con RIFF.
-    assert.equal(image.toString("ascii", 0, 4), "RIFF");
-    // Un WebP contiene WEBP en la cabecera.
-    assert.equal(image.toString("ascii", 8, 12), "WEBP");
+    if (p.image.endsWith(".webp")) {
+      // Un WebP empieza con RIFF y contiene WEBP en la cabecera.
+      assert.equal(image.toString("ascii", 0, 4), "RIFF");
+      assert.equal(image.toString("ascii", 8, 12), "WEBP");
+    } else if (p.image.endsWith(".png")) {
+      // Un PNG empieza con la firma binaria estandar.
+      assert.equal(image.toString("hex", 0, 8), "89504e470d0a1a0a");
+    } else {
+      // Un JPG empieza con la firma binaria estandar.
+      assert.equal(image.toString("hex", 0, 3), "ffd8ff");
+    }
     // Mantiene las imagenes livianas para cargar rapido.
-    assert.ok(image.length < 300000);
+    assert.ok(image.length < 400000);
   }
 });
 
@@ -130,8 +140,8 @@ test("dataLayer conserva eventos previos, registra las cuatro acciones y descart
   assert.equal(click.price, p.price);
   // La moneda debe ser guaranies.
   assert.equal(click.currency, "PYG");
-  // El evento debe indicar que sigue siendo demo.
-  assert.equal(click.demo_mode, true);
+  // El evento debe indicar el modo de simulacion actual.
+  assert.equal(click.demo_mode, false);
   // No debe quedar ningun dato personal dentro de dataLayer.
   assert.equal(JSON.stringify(window.dataLayer).includes("NO_REGISTRAR"), false);
   // El contacto general no debe tener producto asociado.

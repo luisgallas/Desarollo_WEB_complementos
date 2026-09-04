@@ -11,6 +11,10 @@ const mensajeGeneral = "Hola, quiero consultar por los productos de GUA'I Tech."
 const grillaProductos = document.querySelector("#product-grid");
 // Busca en el HTML el texto donde se muestra la cantidad de productos.
 const contadorProductos = document.querySelector("#product-count");
+// Busca el campo de busqueda del catalogo.
+const buscadorProductos = document.querySelector("#product-search");
+// Busca el mensaje que aparece cuando no hay resultados.
+const mensajeSinResultados = document.querySelector("#empty-results");
 // Busca el dialogo modal que muestra el detalle de un producto.
 const dialogoProducto = document.querySelector("#product-dialog");
 // Busca el contenedor interno donde se carga el contenido del modal.
@@ -89,6 +93,19 @@ function crearTarjetaProducto(producto) {
   return tarjeta;
 }
 
+// Devuelve true si el producto coincide con la busqueda ingresada.
+function productoCoincide(producto, consulta) {
+  if (!consulta) return true;
+  const texto = [
+    producto.name,
+    producto.category,
+    producto.categoryLabel,
+    producto.description,
+    ...producto.specs,
+  ].join(" ").toLowerCase();
+  return texto.includes(consulta);
+}
+
 // Abre el modal de detalle para el producto elegido.
 function abrirProducto(producto) {
   // Registra que el usuario vio el detalle de un producto.
@@ -144,13 +161,28 @@ function cerrarProducto() {
 }
 
 // Dibuja todos los productos disponibles en la grilla.
-function configurarCatalogo() {
+function dibujarCatalogo(listaProductos) {
   // Limpia el contenedor antes de cargar tarjetas nuevas.
   grillaProductos.innerHTML = "";
-  // Recorre cada producto y agrega su tarjeta al catalogo.
-  products.forEach((producto) => grillaProductos.append(crearTarjetaProducto(producto)));
-  // Muestra la cantidad total de productos disponibles.
-  contadorProductos.textContent = `${products.length} productos disponibles`;
+  // Recorre cada producto filtrado y agrega su tarjeta al catalogo.
+  listaProductos.forEach((producto) => grillaProductos.append(crearTarjetaProducto(producto)));
+  // Muestra la cantidad de resultados disponibles.
+  const etiqueta = listaProductos.length === 1 ? "producto disponible" : "productos disponibles";
+  contadorProductos.textContent = `${listaProductos.length} ${etiqueta}`;
+  // Muestra u oculta el estado vacio.
+  mensajeSinResultados.hidden = listaProductos.length > 0;
+}
+
+// Filtra el catalogo usando el texto del buscador.
+function actualizarCatalogo() {
+  const consulta = buscadorProductos.value.trim().toLowerCase();
+  dibujarCatalogo(products.filter((producto) => productoCoincide(producto, consulta)));
+}
+
+// Dibuja todos los productos disponibles en la grilla.
+function configurarCatalogo() {
+  dibujarCatalogo(products);
+  buscadorProductos.addEventListener("input", actualizarCatalogo);
 }
 
 // Conecta botones, enlaces y eventos interactivos de la pagina.
